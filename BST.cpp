@@ -7,6 +7,7 @@ class BSTNode{
 public:
     Student student;
     BSTNode* left, *right;
+    explicit BSTNode(){}
     explicit BSTNode(Student student){
         this->student = std::move(student);
         left = right = nullptr;
@@ -78,12 +79,7 @@ public:
             return;
 
         printInorder(node->left);
-
-        cout << "[" << node->student.getId() <<"," <<
-        node->student.getName() <<"," <<
-        node->student.getDepartment() <<"," <<
-        node->student.getGpa() <<"]\n";
-
+        node->student.printStudentInfo();
         printInorder(node->right);
     }
 

@@ -40,13 +40,6 @@ int main() {
 
     //test bst
     bst->print();
-    Student student;
-    student.setDepartment("CS");
-    student.setGpa(3.5);
-    student.setName("Ahmed Samy");
-    student.setId(11);
 
-    bst->insert(student);
-    bst->print();
 
 }
