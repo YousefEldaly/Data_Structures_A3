@@ -104,6 +104,7 @@ void BST::remove(int id) {
     }
     // Tree size = 1
     if (treeSize == 1) {
+        departments[root->student.getDepartment()]--;
         delete root;
         root = nullptr;
         treeSize = 0;
@@ -117,7 +118,11 @@ void BST::remove(int id) {
         else
             node = node->left;
     }
+    // decrease all students
     treeSize--;
+    // decrease the department students
+    departments[node->student.getDepartment()]--;
+
     // Leaf Node (left = null & right null)
     if (node->left == nullptr && node->right == nullptr) {
         delete node;
@@ -128,7 +133,7 @@ void BST::remove(int id) {
             prev->left = nullptr;
     }
 
-        // Left != Null & Right = Null
+    // Left != Null & Right = Null
     else if (node->left != nullptr && node->right == nullptr) {
         if (node == root)
             root = root->left;
@@ -139,7 +144,7 @@ void BST::remove(int id) {
         delete node;
     }
 
-        // Left = Null & Right != Null
+    // Left = Null & Right != Null
     else if (node->left == nullptr && node->right != nullptr) {
         if (node == root)
             root = root->right;
@@ -168,8 +173,8 @@ bool BST::validID(int id){
         return true;
     }
 }
-bool BST::validDep(const string& dep){
-    if (dep == "CS" ||dep == "IS" || dep == "DS"||dep == "AI"){
+bool BST::validDep(string& dep){
+    if (dep == "CS" ||dep == "IS" || dep == "DS"||dep == "AI" || dep == "IT"){
         return true;
     }else{
         return false;
@@ -205,9 +210,12 @@ void BST::displayMenu(){
                 cin >> gpa;
                 cout << "Department: [DS, CS, IS, AI]\n";
                 cin >> dep;
+                for (char & i : dep) {
+                    i = toupper(i);
+                }
                 while (!validDep(dep)){
                     cout<<"Invalid Department, Please try again.\n";
-                    cout<<"Department: [DS, CS, IS, AI]\n";
+                    cout<<"Department: [DS, CS, IS, AI, IT]\n";
                     cin>>dep;
                 }
                 Student new_student = *new Student(name, dep, gpa, id);

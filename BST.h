@@ -35,10 +35,8 @@ public:
     void setDepartments(map<string,int> departments);
     void printDepartments();
     void displayMenu();
-
     bool validID(int id);
-
-    static bool validDep(const string& dep);
+    static bool validDep(string& dep);
 };
 
 #endif //BINARY_SEARCH_TREE_BST_H
