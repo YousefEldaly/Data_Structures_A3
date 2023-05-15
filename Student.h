@@ -20,6 +20,7 @@ public:
     float getGpa() const;
     void setGpa(float student_gpa);
     void printStudentInfo();
+
 };
 
 

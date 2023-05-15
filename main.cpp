@@ -6,11 +6,11 @@ using namespace std;
 
 int main() {
     // create tree
-    auto bst= new BST();
+    auto bst = new BST();
 
 
     // read file
-    ifstream myFile("E:\\Desktop\\Assests\\Data_Structures_A3\\Students.txt");
+    ifstream myFile(R"(E:\Desktop\Assests\Data_Structures_A3\Students.txt)");
     int cnt = 0;
     string line;
     Student stud;
@@ -39,7 +39,7 @@ int main() {
     myFile.close();
 
     //test bst
+    bst->remove(3);
     bst->print();
-
-
+    bst->search(2);
 }
