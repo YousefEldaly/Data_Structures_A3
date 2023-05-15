@@ -1,7 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <map>
-#include "BST.cpp"
+#include "BST.h"
+#include "MaxHeap.h"
+#include "MinHeap.h"
 using namespace std;
 
 
@@ -11,10 +13,11 @@ int main() {
 
     // create tree
     auto bst = new BST();
-
+    auto max = new MaxHeap();
+    auto min = new MinHeap();
 
     // read file
-    ifstream myFile(R"(E:\Desktop\Assests\Data_Structures_A3\Students.txt)");
+    ifstream myFile(R"(C:\Users\Omar\CLionProjects\Data_Structures_A3\Students.txt)");
     int cnt = 0;
     string line;
     Student stud;
@@ -28,8 +31,8 @@ int main() {
                 stud.setDepartment(line);
                 departments[line]++;
                 // AVL insertion
-                // Min Heap insertion
-                // Max Heap insertion
+                min->insert(stud);
+                max->insert(stud);
                 bst->insert(stud);
                 break;
             case 1:
@@ -64,6 +67,16 @@ int main() {
                 // IMPORTANT FOR ALL CASES
                 bst->setDepartments(departments);
                 bst->displayMenu();
+                break;
+            }
+            case 3: {
+                min->setDepartments(departments);
+                min->displayMenu();
+                break;
+            }
+            case 4:{
+                max->setDepartments(departments);
+                max->displayMenu();
                 break;
             }
             case 5:
