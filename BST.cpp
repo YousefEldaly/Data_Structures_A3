@@ -1,8 +1,17 @@
+#include <utility>
 #include "BST.h"
 
 BST::BST() {
     this->root = nullptr;
     this->treeSize = 0;
+}
+void BST::setDepartments(map<string, int> deps) {
+    this->departments = std::move(deps);
+}
+void BST::printDepartments(){
+    for (auto & department : departments) {
+        cout << department.first <<" " << department.second << " Students\n" ;
+    }
 }
 
 int BST::size() const {
@@ -25,7 +34,7 @@ bool BST:: found(int id) {
 
 void BST::search(int id) {
     if (!found(id)) {
-        cout << "Student doesn't exist" << endl;
+        cout << "Student is not found." << endl;
         return;
     }
     BSTNode *p = root;
@@ -47,8 +56,11 @@ void BST::insert(const Student &student) {
         cout << "Student already exists" << endl;
         return;
     }
+
     treeSize++;
     auto *node = new BSTNode(student);
+    departments[student.getDepartment()]++;
+
     if (root == nullptr) {
         root = node;
         return;
@@ -148,3 +160,89 @@ void BST::remove(int id) {
         prev2->left = nullptr;
     }
 }
+
+bool BST::validID(int id){
+    if (id < 0 || id > 100 || found(id)){
+        return false;
+    }else{
+        return true;
+    }
+}
+bool BST::validDep(const string& dep){
+    if (dep == "CS" ||dep == "IS" || dep == "DS"||dep == "AI"){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+void BST::displayMenu(){
+    bool flag = true;
+    while (flag) {
+        cout << "\nChoose one of the following options:\n"
+                "1. Add student\n"
+                "2. Remove student\n"
+                "3. Search student\n"
+                "4. Print All (sorted by id)\n"
+                "5. Return to main menu\n";
+        int option; cin >> option;
+        switch (option) {
+            case 1: {
+                int id;
+                float gpa;
+                string dep, name;
+                cout << "id:";
+                cin >> id;
+                while (!validID(id)){
+                    cout<<"Invalid ID, Please try again.\n";
+                    cout<<"id:";
+                    cin>>id;
+                }
+                cout << "Name:";
+                cin.ignore();
+                getline(cin,name);
+                cout << "GPA:";
+                cin >> gpa;
+                cout << "Department: [DS, CS, IS, AI]\n";
+                cin >> dep;
+                while (!validDep(dep)){
+                    cout<<"Invalid Department, Please try again.\n";
+                    cout<<"Department: [DS, CS, IS, AI]\n";
+                    cin>>dep;
+                }
+                Student new_student = *new Student(name, dep, gpa, id);
+                insert(new_student);
+                cout << "\nThe student is added.\n";
+                break;
+            }
+            case 2:{
+                int id;
+                cout<<"Id: "; cin >> id;
+                if (found(id)){
+                    search(id);
+                    remove(id);
+                    cout << "Student is deleted.\n";
+                }else{
+                    cout << "Student is not found.\n";
+                }
+                break;
+            }
+            case 3:{
+                int id;
+                cout<<"Id: "; cin >> id;
+                search(id);
+                break;
+            }
+            case 4:{
+                cout << "\nPrint " << treeSize << " Students.\n";
+                print(); cout << "\n\nStudents per Departments:\n";
+                printDepartments();
+                break;
+            }
+            case 5:
+                flag = false;
+                break;
+        }
+    }
+}
+

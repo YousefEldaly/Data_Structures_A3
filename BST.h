@@ -1,7 +1,7 @@
 #ifndef BINARY_SEARCH_TREE_BST_H
 #define BINARY_SEARCH_TREE_BST_H
 
-
+#include <map>
 #include "iostream"
 #include "Student.h"
 
@@ -21,6 +21,7 @@ public:
 class BST {
 private:
     BSTNode *root;
+    map<string,int> departments;
     int treeSize{};
 public:
     BST();
@@ -31,6 +32,13 @@ public:
     void printInorder(BSTNode *node);
     void print();
     void remove(int id);
+    void setDepartments(map<string,int> departments);
+    void printDepartments();
+    void displayMenu();
+
+    bool validID(int id);
+
+    static bool validDep(const string& dep);
 };
 
 #endif //BINARY_SEARCH_TREE_BST_H

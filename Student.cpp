@@ -1,5 +1,7 @@
 #include "Student.h"
 
+#include <utility>
+
 Student::Student(string name, string dep, float gpa, int id) {
     this->id = id;
     this->name = std::move(name);
@@ -49,4 +51,3 @@ float Student::getGpa() const {
 void Student::setGpa(float student_gpa) {
     Student::gpa = student_gpa;
 }
-
