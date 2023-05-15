@@ -26,6 +26,7 @@ public:
     void setDepartments(std::map<std::string, int> deps);
     void displayMenu();
     bool validID(int id);
+    bool validGPA(float gpa);
     static bool validDep(const string& dep);
     bool found(int id);
 };

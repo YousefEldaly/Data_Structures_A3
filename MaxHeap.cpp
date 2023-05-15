@@ -89,6 +89,11 @@ void MaxHeap::displayMenu() {
                 getline(cin, name);
                 cout << "GPA:";
                 cin >> gpa;
+                while(!validGPA(gpa)){
+                    cout << "Invalid GPA, Please try again.\n";
+                    cout << "GPA: ";
+                    cin >> gpa;
+                }
                 cout << "Department: [DS, CS, IS, AI]\n";
                 cin >> dep;
                 while (!validDep(dep)) {
@@ -127,6 +132,13 @@ bool MaxHeap::validDep(const string& dep){
         return false;
     }
 }
+
+bool MaxHeap::validGPA(float gpa){
+    if(gpa >= 0.0 && gpa <= 4.0)
+        return true;
+    return false;
+}
+
 bool MaxHeap::found(int id) {
     for (int i = 0; i < students.size(); i++) {
         if (students[i]->getId() == id)
@@ -134,3 +146,5 @@ bool MaxHeap::found(int id) {
     }
     return false;
 }
+
+

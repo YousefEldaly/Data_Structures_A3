@@ -19,7 +19,7 @@ int main() {
     auto max = new MaxHeap();
 
     // read file
-    ifstream myFile(R"(C:\Users\Omar\CLionProjects\Data_Structures_A3_1\Students.txt)");
+    ifstream myFile(R"(D:\Study\Level 2\Data_Stuctures\Assignments\Assignment3\Data_Structures_A3\Students.txt)");
     int cnt = 0;
     string line;
     Student stud;
