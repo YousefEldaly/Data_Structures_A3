@@ -1,4 +1,4 @@
-# Install script for directory: D:/Study/Level 2/Data_Stuctures/Assignments/Assignment3/Trees
+# Install script for directory: C:/Users/Omar/CLionProjects/Data_Structures_A3_1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/Study/Level 2/Data_Stuctures/Assignments/Assignment3/Trees/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Omar/CLionProjects/Data_Structures_A3_1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
